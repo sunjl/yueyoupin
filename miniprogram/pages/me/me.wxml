@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view>
+      <block wx:if="{{!hasUserInfo && canIUse}}">
+        <button class="userinfo-nickname" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          登录/注册
+        </button>
+      </block>
+      <block wx:else>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class="list-item" bindtap="listProduct">
+    <view class="left">
+      <text>我的订单</text>
+    </view>
+    <view class="right">
+      <text>></text>
+    </view>
+  </view>
+
+  <view class="list-item" bindtap="listEvent">
+    <view class="left">
+      <text>我的活动</text>
+    </view>
+    <view class="right">
+      <text>></text>
+    </view>
+  </view>
+
+  <view class="list-item" bindtap="listUser">
+    <view class="left">
+      <text>我关注的人</text>
+    </view>
+    <view class="right">
+      <text>></text>
+    </view>
+  </view>
+
+  <view class="create">
+    <view class="text" bindtap="doCreate">
+      <text>我要发布</text>
+    </view>
+  </view>
+</view>

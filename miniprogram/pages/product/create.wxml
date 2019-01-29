@@ -1,0 +1,17 @@
+<view class='container'>
+  <form bindsubmit='formSubmit'>
+    <view class='name'>
+      <input name="name" placeholder='商品名称' auto-focus bindinput='nameInput'></input>
+    </view>
+
+    <view class='detail'>
+      <textarea placeholder='商品详细介绍' auto-focus auto-height name="detail" bindinput='detailInput' />
+    </view>
+
+    <view class='btn-box'>
+      <button form-type='submit' type='primary'>
+        提交
+      </button>
+    </view>
+  </form>
+</view>

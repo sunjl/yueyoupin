@@ -1,0 +1,111 @@
+const config = require('../../utils/config.js')
+const app = getApp()
+const db = wx.cloud.database()
+const size = config.page_size
+
+Page({
+
+  data: {
+    userId: '',
+    count: 0,
+    items: [],
+    isRefreshing: false,
+    hasMore: true,
+    isLoadingMore: false
+  },
+
+  onLoad: function(options) {
+    console.log(options)
+    if (options.userId) {
+      this.setData({
+        userId: options.userId
+      })
+    }
+    this.setData({
+      page: 0
+    })
+    this.loadData()
+  },
+
+  onPullDownRefresh: function() {
+    wx.startPullDownRefresh()
+  },
+
+  onPullDownRefresh: function() {
+    if (this.data.isRefreshing || this.data.isLoadingMore) {
+      return
+    }
+    this.setData({
+      page: 0,
+      isRefreshing: true
+    })
+    this.loadData()
+    wx.stopPullDownRefresh()
+  },
+
+  onReachBottom: function() {
+    if (this.data.isRefreshing || this.data.isLoadingMore || !this.data.hasMore) {
+      return
+    }
+    this.setData({
+      page: this.data.page + 1,
+      isLoadingMore: true
+    })
+    this.loadMoreData()
+  },
+
+  loadData: function() {
+    const page = this.data.page;
+    wx.cloud.callFunction({
+      name: 'list',
+      data: {
+        collection: "products",
+        page: page,
+        size: size,
+        filter: {
+          userId: this.data.userId
+        }
+      }
+    }).then(res => {
+      const result = res.result
+      this.setData({
+        count: result.count,
+        items: result.data,
+        hasMore: result.hasMore,
+        isRefreshing: false
+      })
+    })
+  },
+
+  loadMoreData: function() {
+    const page = this.data.page;
+    this.setData({
+      isLoadingMore: false
+    })
+    wx.cloud.callFunction({
+      name: 'list',
+      data: {
+        collection: "products",
+        page: page,
+        size: size,
+        filter: {
+          _userId: this.data.userId
+        }
+      }
+    }).then(res => {
+      const result = res.result
+      const moreItems = result.data
+      if (moreItems && moreItems.length > 0) {
+        this.setData({
+          items: this.data.items.concat(moreItems),
+        })
+      }
+      this.setData({
+        count: result.count,
+        hasMore: result.hasMore,
+        isRefreshing: false
+      })
+    })
+  }
+
+})
