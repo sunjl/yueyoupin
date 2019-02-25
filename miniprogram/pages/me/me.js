@@ -104,15 +104,15 @@ Page({
     })
   },
 
-  listClub: function(options) {
+  listGroup: function(options) {
     wx.navigateTo({
-      url: '../club/list?userId=' + app.globalData.userId
+      url: '../group/list?userId=' + app.globalData.userId
     })
   },
 
   doCreate(e) {
     wx.showActionSheet({
-      itemList: ['商品', '活动', '门店'],
+      itemList: ['商品', '活动', '群组'],
       success: res => {
         if (res.tapIndex === 0) {
           wx.navigateTo({
@@ -121,7 +121,7 @@ Page({
         } else if (res.tapIndex === 1) {
           this.doCreateEvent()
         } else if (res.tapIndex === 2) {
-          this.doCreateClub()
+          this.doCreateGroup()
         }
       }
     })

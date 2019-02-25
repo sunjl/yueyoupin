@@ -6,11 +6,13 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"appid": "wx320b2fff7de09c4f",
 	"projectname": "yueyoupin",
-	"libVersion": "2.4.3",
+	"libVersion": "2.5.1",
 	"condition": {
 		"search": {
 			"current": -1,

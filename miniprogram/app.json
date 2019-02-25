@@ -1,23 +1,21 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/event/event",
-    "pages/club/club",
-    "pages/user/user",
-    "pages/me/me",
-    "pages/product/create",
-    "pages/product/show",
     "pages/product/list",
+    "pages/product/show",
+    "pages/product/create",
+    "pages/event/event",
     "pages/event/list",
-    "pages/club/list",
-    "pages/user/list"
+    "pages/group/group",
+    "pages/group/list",
+    "pages/me/me"
   ],
   "tabBar": {
     "selectedColor": "#1AAD19",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "商城",
+        "text": "商品",
         "iconPath": "./images/tabbar/product.png",
         "selectedIconPath": "./images/tabbar/product-selected.png"
       },
@@ -28,16 +26,10 @@
         "selectedIconPath": "./images/tabbar/event-selected.png"
       },
       {
-        "pagePath": "pages/club/club",
-        "text": "门店",
-        "iconPath": "./images/tabbar/club.png",
-        "selectedIconPath": "./images/tabbar/club-selected.png"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "社区",
-        "iconPath": "./images/tabbar/user.png",
-        "selectedIconPath": "./images/tabbar/user-selected.png"
+        "pagePath": "pages/group/group",
+        "text": "群组",
+        "iconPath": "./images/tabbar/group.png",
+        "selectedIconPath": "./images/tabbar/group-selected.png"
       },
       {
         "pagePath": "pages/me/me",

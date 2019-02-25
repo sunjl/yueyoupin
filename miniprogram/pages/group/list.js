@@ -1,4 +1,4 @@
-// pages/club/list.js
+// pages/group/list.js
 Page({
 
   /**

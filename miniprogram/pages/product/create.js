@@ -5,7 +5,10 @@ Page({
 
   data: {
     name: '',
-    detail: ''
+    price: 0,
+    quantity: 0,
+    detail: '',
+    photos: []
   },
 
   nameInput(e) {
@@ -20,6 +23,26 @@ Page({
     })
   },
 
+  chooseImage: function(e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function(res) {
+        that.setData({
+          photos: that.data.photos.concat(res.tempFilePaths)
+        });
+      }
+    })
+  },
+
+  previewImage: function(e) {
+    wx.previewImage({
+      current: e.currentTarget.id,
+      urls: this.data.photos
+    })
+  },
+
   async formSubmit(e) {
     console.log(this.data)
 
@@ -27,4 +50,5 @@ Page({
       url: "/pages/me/me"
     })
   }
+
 })
