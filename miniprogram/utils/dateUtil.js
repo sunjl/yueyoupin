@@ -24,7 +24,22 @@ const formatDisplayDate = date => {
   return displayDate
 }
 
+const formatPickerDate = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return [year, month, day].map(formatNumber).join('-')
+}
+
+const formatPickerTime = date => {
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  return [hour, minute].map(formatNumber).join('-')
+}
+
 module.exports = {
   formatDate: formatDate,
-  formatDisplayDate: formatDisplayDate
+  formatDisplayDate: formatDisplayDate,
+  formatPickerDate: formatPickerDate,
+  formatPickerTime: formatPickerTime
 }

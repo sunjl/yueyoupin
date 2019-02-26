@@ -119,9 +119,13 @@ Page({
             url: '../product/create'
           })
         } else if (res.tapIndex === 1) {
-          this.doCreateEvent()
+          wx.navigateTo({
+            url: '../event/create'
+          })
         } else if (res.tapIndex === 2) {
-          this.doCreateGroup()
+          wx.navigateTo({
+            url: '../group/create'
+          })
         }
       }
     })

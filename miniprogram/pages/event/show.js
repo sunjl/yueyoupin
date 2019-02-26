@@ -1,4 +1,4 @@
-// pages/user/list.js
+// pages/event/show.js
 Page({
 
   /**

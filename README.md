@@ -7,10 +7,6 @@ npm install vant-weapp --save
   -> 详情 -> 使用npm模块
   -> 构建npm
 
-商品 名称 价格 数量 详情 图片
-活动 名称 时间 地点 人数 详情
-群组 名称 详情
-
 TODO
 - 裁剪 cropper canvas
 - 地区选择

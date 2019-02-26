@@ -6,8 +6,12 @@
     "pages/product/create",
     "pages/event/event",
     "pages/event/list",
+    "pages/event/show",
+    "pages/event/create",
     "pages/group/group",
     "pages/group/list",
+    "pages/group/show",
+    "pages/group/create",
     "pages/me/me"
   ],
   "tabBar": {

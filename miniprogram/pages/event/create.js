@@ -1,14 +1,28 @@
 const regeneratorRuntime = require('../../utils/regenerator-runtime.js')
+const dateUtil = require('../../utils/dateUtil.js')
 const app = getApp()
 
 Page({
 
   data: {
     name: '',
-    price: 0,
+    address: '',
     quantity: 50,
+    beginDate: '',
+    beginTime: '',
+    endDate: '',
+    endTime: '',
     introduction: '',
     photos: []
+  },
+
+  onLoad: function(options) {
+    this.setData({
+      beginDate: dateUtil.formatPickerDate(new Date()),
+      beginTime: '12:00',
+      endDate: dateUtil.formatPickerDate(new Date()),
+      endTime: '12:00'
+    })
   },
 
   nameInput(e) {
@@ -17,9 +31,9 @@ Page({
     })
   },
 
-  priceInput(e) {
+  addressInput(e) {
     this.setData({
-      price: parseFloat(e.detail.value)
+      address: e.detail.value
     })
   },
 
@@ -27,6 +41,30 @@ Page({
     this.setData({
       quantity: parseInt(e.detail.value)
     })
+  },
+
+  beginDateChange(event) {
+    this.setData({
+      beginDate: event.detail.value
+    });
+  },
+
+  beginTimeChange(event) {
+    this.setData({
+      beginTime: event.detail.value
+    });
+  },
+
+  endDateChange(event) {
+    this.setData({
+      endDate: event.detail.value
+    });
+  },
+
+  endTimeChange(event) {
+    this.setData({
+      endTime: event.detail.value
+    });
   },
 
   introductionInput(e) {

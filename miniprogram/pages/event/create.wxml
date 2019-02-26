@@ -13,18 +13,62 @@
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label">价格</view>
+          <view class="weui-label">地址</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" name="price" placeholder="价格" value='{{price}}' auto-focus bindinput='priceInput' />
+          <input class="weui-input" name="address" placeholder='地址' value='{{address}}' auto-focus bindinput='addressInput' />
         </view>
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label">数量</view>
+          <view class="weui-label">人数</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" name="quantity" placeholder="数量" value='{{quantity}}' auto-focus bindinput='quantityInput' />
+          <input class="weui-input" name="quantity" placeholder="人数" value='{{quantity}}' auto-focus bindinput='quantityInput' />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">时间日期</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">开始日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{beginDate}}" bindchange="beginDateChange">
+            <view class="weui-input">{{beginDate}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">开始时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="time" value="{{beginTime}}" bindchange="beginTimeChange">
+            <view class="weui-input">{{beginTime}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">结束日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{endDate}}" bindchange="endDateChange">
+            <view class="weui-input">{{endDate}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">结束时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="time" value="{{endTime}}" bindchange="endTimeChange">
+            <view class="weui-input">{{endTime}}</view>
+          </picker>
         </view>
       </view>
     </view>
