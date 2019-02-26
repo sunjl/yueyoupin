@@ -7,7 +7,7 @@
     <block wx:for="{{items}}" wx:key='{{item._id}}'>
       <navigator url="/pages/product/show?id={{item._id}}">
         <view class="item">
-          <image src="{{item.cloudPath}}" mode="aspectFill" class="item-image"></image>
+          <image src="{{item.coverPhoto}}" mode="aspectFill" class="item-image"></image>
           <view class='user'>
             <image src="{{item.userInfo.avatarUrl}}" mode="aspectFit" class="user-avatar"></image>
             <view class="user-nickname">

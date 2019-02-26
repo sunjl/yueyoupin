@@ -77,7 +77,7 @@
     <view class="weui-cell">
       <view class="weui-cell__bd">
         <textarea class="weui-textarea" name="introduction" placeholder='详细信息' value='{{introduction}}' auto-focus auto-height bindinput='introductionInput' />
-        <view class="weui-textarea-counter">0/200</view>
+        <view class="weui-textarea-counter">{{introductionLength}}/200</view>
       </view>
     </view>
 

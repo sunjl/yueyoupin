@@ -8,9 +8,12 @@ npm install vant-weapp --save
   -> 构建npm
 
 TODO
+- list panel popup+area
 - 裁剪 cropper canvas
-- 地区选择
 - 分享 小程序码
 - 模板消息
 - 支付
 - 地图
+
+list show delete
+orders participants members

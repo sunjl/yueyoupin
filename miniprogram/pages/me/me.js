@@ -129,48 +129,6 @@ Page({
         }
       }
     })
-  },
-
-  doCreateProduct: function() {
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function(res) {
-        wx.showLoading({
-          title: '上传中',
-        })
-        const filePath = res.tempFilePaths[0]
-        const uploadDate = new Date()
-        const extension = filePath.match(/\.[^.]+?$/)[0]
-        const baseName = app.globalData.openid + '-' + dateUtil.formatDate(uploadDate)
-        const cloudPath = baseName + extension
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            app.globalData.fileID = res.fileID
-            db.collection('products').add({
-              data: {
-                cloudPath: app.globalData.fileID,
-                userId: app.globalData.userId,
-                userInfo: app.globalData.userInfo,
-                createDate: uploadDate,
-                displayCreateDate: dateUtil.formatDisplayDate(uploadDate)
-              },
-              success: res => {
-                this.setData({
-                  id: res._id
-                })
-              }
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-      }
-    })
   }
 
 })

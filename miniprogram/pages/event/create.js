@@ -1,18 +1,20 @@
+const app = getApp()
 const regeneratorRuntime = require('../../utils/regenerator-runtime.js')
 const dateUtil = require('../../utils/dateUtil.js')
-const app = getApp()
+const db = wx.cloud.database()
 
 Page({
 
   data: {
     name: '',
     address: '',
-    quantity: 50,
+    quantity: 100,
     beginDate: '',
     beginTime: '',
     endDate: '',
     endTime: '',
     introduction: '',
+    introductionLength: 0,
     photos: []
   },
 
@@ -69,19 +71,40 @@ Page({
 
   introductionInput(e) {
     this.setData({
-      introduction: e.detail.value
+      introduction: e.detail.value,
+      introductionLength: e.detail.value.length
     })
   },
 
   chooseImage: function(e) {
     var that = this;
     wx.chooseImage({
+      count: 9,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function(res) {
-        that.setData({
-          photos: that.data.photos.concat(res.tempFilePaths)
-        });
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePaths = res.tempFilePaths
+        filePaths.forEach((filePath) => {
+          const uploadDate = new Date()
+          const extension = filePath.match(/\.[^.]+?$/)[0]
+          const baseName = app.globalData.openid + '-' + dateUtil.formatDate(uploadDate)
+          const cloudPath = baseName + extension
+          wx.cloud.uploadFile({
+            cloudPath,
+            filePath,
+            success: res => {
+              that.setData({
+                photos: that.data.photos.concat(res.fileID)
+              });
+            },
+            complete: () => {
+              wx.hideLoading()
+            }
+          })
+        })
       }
     })
   },
@@ -93,11 +116,33 @@ Page({
     })
   },
 
-  submit(e) {
-    console.log(this.data)
-
-    wx.navigateBack({
-      url: "/pages/me/me"
+  submit: function() {
+    const createDate = new Date()
+    const beginDateTime = dateUtil.concatDateTime(this.data.beginDate, this.data.beginTime)
+    const endDateTime = dateUtil.concatDateTime(this.data.endDate, this.data.endTime)
+    db.collection('events').add({
+      data: {
+        name: this.data.name,
+        address: this.data.address,
+        quantity: this.data.quantity,
+        beginDateTime: beginDateTime,
+        endDateTime: endDateTime,
+        introduction: this.data.introduction,
+        photos: this.data.photos,
+        coverPhoto: this.data.photos[0],
+        userId: app.globalData.userId,
+        userInfo: app.globalData.userInfo,
+        createDate: createDate,
+        displayCreateDate: dateUtil.formatDisplayDate(createDate)
+      },
+      success: res => {
+        this.setData({
+          id: res._id
+        })
+        wx.navigateBack({
+          url: "/pages/me/me"
+        })
+      }
     })
   }
 

@@ -15,7 +15,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options)
     if (options.userId) {
       this.setData({
         userId: options.userId
